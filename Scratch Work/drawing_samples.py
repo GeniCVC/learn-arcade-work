@@ -1,3 +1,4 @@
+
 """
 This simple animation example shows how to use classes to animate
 multiple objects on the screen at the same time.
