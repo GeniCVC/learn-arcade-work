@@ -3,6 +3,7 @@
 # Imports arcade library
 import arcade
 
+
 # Sky Function
 def draw_sky():
     # Draws Sky
@@ -134,7 +135,6 @@ def sun(x, y):
 
 
 def on_draw(delta_time):
-
     # Starts render
 
     arcade.start_render()
@@ -183,6 +183,7 @@ def on_draw(delta_time):
 # Creates a value that sun will start at.
 on_draw.bright_x = 520
 
+
 # In-future wanting to learn how to make it come from right side and stop at 520 x to give the effect of cycle.
 
 # Main Function
@@ -195,6 +196,7 @@ def main():
     arcade.schedule(on_draw, 1 / 60)
     # Keeps running the windows until closed.
     arcade.run()
+
 
 # Ends Main Function.
 main()
