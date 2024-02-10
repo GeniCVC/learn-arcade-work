@@ -3,7 +3,6 @@
 # Imports arcade library
 import arcade
 
-
 # Sky Function
 def draw_sky():
     # Draws Sky
@@ -44,8 +43,15 @@ def draw_seagulls():
 
 # Ocean Function
 def ocean():
-    # Draw First strip of Ocean
+    # Draw Ocean
     arcade.draw_rectangle_filled(300, 180, 600, 58, arcade.color.BLUEBONNET)
+    arcade.draw_rectangle_filled(600, 60, 180, 183, arcade.color.BLUEBONNET)
+
+
+# Wave Function
+
+def lines():
+    # Draw Waves
     arcade.draw_line(0, 200, 200, 200, arcade.color.WHITE)
     arcade.draw_line(150, 180, 240, 180, arcade.color.WHITE)
     arcade.draw_line(220, 200, 280, 200, arcade.color.WHITE)
@@ -59,8 +65,6 @@ def ocean():
     arcade.draw_line(560, 170, 610, 170, arcade.color.WHITE)
     arcade.draw_line(550, 155, 590, 155, arcade.color.WHITE)
 
-    # Draw Rest of Ocean
-    arcade.draw_rectangle_filled(600, 60, 180, 183, arcade.color.BLUEBONNET)
     arcade.draw_line(530, 85, 540, 85, arcade.color.WHITE)
     arcade.draw_line(550, 75, 570, 75, arcade.color.WHITE)
     arcade.draw_line(580, 65, 590, 65, arcade.color.WHITE)
@@ -81,6 +85,11 @@ def towel():
     arcade.draw_line(10, 35, 90, 35, arcade.color.WHITE, 3)
     arcade.draw_line(10, 55, 90, 55, arcade.color.WHITE, 3)
     arcade.draw_line(10, 120, 90, 120, arcade.color.WHITE, 3)
+
+
+def sand():
+    # Draw Sand
+    arcade.draw_lrtb_rectangle_filled(0, 599, 150, 0, arcade.color.BLANCHED_ALMOND)
 
 
 # Rocks in Sand Function
@@ -119,10 +128,62 @@ def palm_tree():
 
 
 # Sun Function
-def sun():
+def sun(x, y):
     # Draw Sun
-    arcade.draw_circle_filled(520, 550, 40, arcade.color.YELLOW)
+    arcade.draw_circle_filled(x, y, 40, arcade.color.YELLOW)
 
+
+def on_draw(delta_time):
+
+    # Starts render
+
+    arcade.start_render()
+
+    # Sky Function
+
+    draw_sky()
+
+    # Sand Function
+
+    sand()
+
+    # Ocean Function
+
+    ocean()
+
+    # Waves Function
+
+    lines()
+
+    # Seagull Function
+
+    draw_seagulls()
+
+    # Towel Function
+
+    towel()
+
+    # Rock Function
+
+    sand_detail()
+
+    # Palm Tree Function
+
+    palm_tree()
+
+    # Calls Sun function and sets Sun function at 520 x and 520 y
+
+    sun(on_draw.bright_x, 520)
+
+    # Moves Sun to the left at speed of 1
+
+    on_draw.bright_x -= 1
+
+
+# Creates a value that sun will start at.
+on_draw.bright_x = 520
+
+# In-future wanting to learn how to make it come from right side and stop at 520 x to give the effect of cycle.
 
 # Main Function
 def main():
@@ -131,40 +192,9 @@ def main():
     # Sets background color
     arcade.set_background_color(arcade.color.BLUE_SAPPHIRE)
     # Gets program ready to draw
-    arcade.start_render()
-
-    # Draw Sand
-    arcade.draw_lrtb_rectangle_filled(0, 599, 150, 0, arcade.color.BLANCHED_ALMOND)
-
-    # Calls Sky Function
-    draw_sky()
-
-    # Calls Seagulls Function
-    draw_seagulls()
-
-    # Calls Ocean Function
-    ocean()
-
-    # Calls Towel Function
-    towel()
-
-    # Calls Sand Function
-    sand_detail()
-
-    # Calls Palm Tree Function
-    palm_tree()
-
-    # Calls Sun Function
-    sun()
-
-    # Finishes Drawing
-    arcade.finish_render()
-
+    arcade.schedule(on_draw, 1 / 60)
     # Keeps running the windows until closed.
     arcade.run()
-
-    # End of Program
-
 
 # Ends Main Function.
 main()
