@@ -49,15 +49,15 @@ while done == False:
         if can <= 0:
             print("You are out of fuel in your canister")
 
-        if can >= 1:
+        elif can >= 1:
             print("You refuel your ship from your fuel canister")
 
             can -= 1
-            
+
             fuel = 0
 
     # B choice input
-    if Choice == "b" or Choice == "B":
+    elif Choice == "b" or Choice == "B":
 
         print("You move ahead at cruising speed.")
 
@@ -83,7 +83,6 @@ while done == False:
 
         # Checks if my_number matches cache value
         if my_number == cache:
-
             print("You found a resource cache!")
 
             can = 3
@@ -93,7 +92,7 @@ while done == False:
             fuel = 0
 
     # C choice input
-    if Choice == "c" or Choice == "C":
+    elif Choice == "c" or Choice == "C":
 
         print("You move ahead at warp speed.")
 
@@ -121,7 +120,6 @@ while done == False:
 
         # Checks if my_number matches cache value
         if my_number == cache:
-
             print("You found a resource cache!")
 
             can = 3
@@ -131,7 +129,7 @@ while done == False:
             fuel = 0
 
     # D choice input
-    if Choice == "d" or Choice == "D":
+    elif Choice == "d" or Choice == "D":
 
         print("You cool down your warp drive.")
 
@@ -143,7 +141,7 @@ while done == False:
         overheat = 0
 
     # E choice input
-    if Choice == "e" or Choice == "E":
+    elif Choice == "e" or Choice == "E":
 
         print("Light-years traveled : ", miles)
 
@@ -155,7 +153,7 @@ while done == False:
         print("The Republic is ", behind, " light-years behind you.")
 
     # Q choice input
-    if Choice == "q" or Choice == "Q":
+    elif Choice == "q" or Choice == "Q":
 
         print("You've decided to quit the game.")
 
@@ -163,12 +161,12 @@ while done == False:
         done = True
 
     # Warning Screen
-    if fuel == 4 and fuel != 6 and done != True:
+    elif fuel == 4 and fuel != 6 and done != True:
 
         print("You are low on gas.")
 
     # Lose screen
-    if fuel == 6 and done != True:
+    elif fuel == 6 and done != True:
 
         print("You ran out of gas!")
 
@@ -176,12 +174,12 @@ while done == False:
         done = True
 
     # Warning Screen
-    if 5 <= overheat <= 7 and done != True:
+    elif 5 <= overheat <= 7 and done != True:
 
         print("Your warp drive is starting to overheat.")
 
     # Lose screen
-    if overheat >= 8 and done != True:
+    elif overheat >= 8 and done != True:
 
         print("Your warpdrive overheated and exploded!")
 
@@ -189,12 +187,12 @@ while done == False:
         done = True
 
     # Warning Screen
-    if -5 >= republic >= 0:
+    elif -5 >= republic >= 0:
 
         print("The Republic is getting close!")
 
     # Lose screen
-    if republic >= 0 and done != True:
+    elif republic >= 0 and done != True:
 
         print("The Republic caught you!")
 
@@ -202,7 +200,7 @@ while done == False:
         done = True
 
     # Win screen
-    if miles >= 200 and done != True:
+    elif miles >= 200 and done != True:
 
         print("You were able to lose the Republic. You won!")
 
