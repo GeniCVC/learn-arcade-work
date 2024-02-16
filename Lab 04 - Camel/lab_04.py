@@ -1,5 +1,7 @@
 # Written by Matthew Jackson
 # Imports random function
+# Reimagining of Camel Game - overheat = camel tiredness, fuel = water from canteen,
+# republic = natives, can = actual canteen, and cache = oasis
 import random
 
 # Introduction
@@ -21,7 +23,7 @@ fuel = 0
 republic = -20
 
 # Variable to keep track of gas canister
-can = 4
+can = 3
 
 # Variable to check to see if starship finds resource cache.
 cache = 20
@@ -53,6 +55,8 @@ while done == False:
             print("You refuel your ship from your fuel canister")
 
             can -= 1
+
+            print("You have ", can, " refills of fuel left.")
 
             fuel = 0
 
@@ -97,7 +101,7 @@ while done == False:
         print("You move ahead at warp speed.")
 
         # Rolls a random number between range
-        my_number1 = random.randrange(14, 20)
+        my_number1 = random.randrange(12, 16)
 
         # Displays how much distance traveled
         print("You traveled ", my_number1, " light-years.")
@@ -108,7 +112,7 @@ while done == False:
         # Rolls a random number between range
         my_number = random.randrange(1, 3)
 
-        overheat = my_number + overheat - my_number1
+        overheat = my_number + overheat
 
         # Rolls a random number between range
         my_number = random.randrange(7, 14)
@@ -161,12 +165,12 @@ while done == False:
         done = True
 
     # Warning Screen
-    elif fuel == 4 and fuel != 6 and done != True:
+    if fuel == 4 and fuel != 6 and done != True:
 
         print("You are low on gas.")
 
     # Lose screen
-    elif fuel == 6 and done != True:
+    if fuel == 6 and done != True:
 
         print("You ran out of gas!")
 
@@ -174,12 +178,12 @@ while done == False:
         done = True
 
     # Warning Screen
-    elif 5 <= overheat <= 7 and done != True:
+    if 5 <= overheat <= 7 and done != True:
 
         print("Your warp drive is starting to overheat.")
 
     # Lose screen
-    elif overheat >= 8 and done != True:
+    if overheat >= 8 and done != True:
 
         print("Your warpdrive overheated and exploded!")
 
@@ -187,12 +191,12 @@ while done == False:
         done = True
 
     # Warning Screen
-    elif -5 >= republic >= 0:
+    if -1 >= republic >= -10:
 
         print("The Republic is getting close!")
 
     # Lose screen
-    elif republic >= 0 and done != True:
+    if republic >= 0 and done != True:
 
         print("The Republic caught you!")
 
