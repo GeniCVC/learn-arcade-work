@@ -32,7 +32,7 @@ cache = 20
 done = False
 
 # while loop to loop game.
-while done == False:
+while not done:
 
     # Options to be chosen
     print("A. Refuel Tank.")
@@ -48,16 +48,20 @@ while done == False:
     # A choice input
     if Choice == "a" or Choice == "A":
 
+        # Checks to see if there's any fuel left, if not this runs
         if can <= 0:
             print("You are out of fuel in your canister")
 
+        # Checks to see if there's any fuel left, if so this runs
         elif can >= 1:
             print("You refuel your ship from your fuel canister")
 
+            # Minuses 1 then assigns value to can variable
             can -= 1
 
             print("You have ", can, " refills of fuel left.")
 
+            # Resets fuel variable
             fuel = 0
 
     # B choice input
@@ -73,13 +77,16 @@ while done == False:
 
         miles += my_number1
 
+        # Add 1 and assigns value to fuel variable
         fuel += 1
 
+        # Add 1 and assigns value to overheat variable
         overheat += 1
 
         # Rolls a random number between range
         my_number = random.randrange(7, 14)
 
+        # Calculates distance between republic and starship
         republic = republic + my_number - my_number1
 
         # Rolls a random number between range
@@ -89,10 +96,13 @@ while done == False:
         if my_number == cache:
             print("You found a resource cache!")
 
+            # Sets can variable back to 3
             can = 3
 
+            # Resets overheat variable
             overheat = 0
 
+            # Resets fuel variable
             fuel = 0
 
     # C choice input
@@ -106,7 +116,10 @@ while done == False:
         # Displays how much distance traveled
         print("You traveled ", my_number1, " light-years.")
 
+        # Adds and assigns my_number1 variable value to miles variable
         miles += my_number1
+
+        # Adds 1 and assigns value to fuel variable
         fuel += 1
 
         # Rolls a random number between range
@@ -117,6 +130,7 @@ while done == False:
         # Rolls a random number between range
         my_number = random.randrange(7, 14)
 
+        # Calculates distance between republic and starship
         republic = my_number + republic - my_number1
 
         # Rolls a random number between range
@@ -126,10 +140,13 @@ while done == False:
         if my_number == cache:
             print("You found a resource cache!")
 
+            # Sets can variable back to 3
             can = 3
 
+            # Resets overheat variable
             overheat = 0
 
+            # Resets fuel variable
             fuel = 0
 
     # D choice input
@@ -140,20 +157,25 @@ while done == False:
         # Rolls a random number between range
         my_number = random.randrange(7, 14)
 
+        # Moves republic variable forward
         republic = republic + my_number
 
+        # Resets overheat variable
         overheat = 0
 
     # E choice input
     elif Choice == "e" or Choice == "E":
 
+        # Displays distance traveled
         print("Light-years traveled : ", miles)
 
+        # Displays fuel left in canister
         print("Fuel in Canister : ", can)
 
         # Makes republic value into positive.
         behind = republic * -1
 
+        # Displays distance between the Republic and starship
         print("The Republic is ", behind, " light-years behind you.")
 
     # Q choice input
