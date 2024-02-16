@@ -1,55 +1,153 @@
-import arcade
+# Written by Matthew Jackson
+# Imports random function
+import random
 
-SCREEN_WIDTH = 800
-SCREEN_HEIGHT = 600
+# Introduction
+print("Welcome to Starship Escape!")
+print("You have stolen a starship from the Republic of Aros to make your way across the Tessa Galaxy.")
+print("The Republic wants their starship back and are chasing after you! ")
+print("Survive your trek across the galaxy and out run the Republic of Aros.")
+# Variable to keep track of distance traveled
+miles = 0
 
+# Variable to keep track of warp-drive overheating
+overheat = 0
 
-def draw_grass():
-    """ Draw the ground """
-    arcade.draw_lrtb_rectangle_filled(0, SCREEN_WIDTH, SCREEN_HEIGHT / 3, 0, arcade.color.AIR_SUPERIORITY_BLUE)
+# Variable to keep track of need of fuel
+fuel = 0
 
+# Variable to keep track of distance between Republic and Starship
+republic = -20
 
-def draw_snow_person(x, y):
-    """ Draw a snow person """
+# Variable to keep track of gas canister
+can = 4
 
-    # Draw a point at x, y for reference
-    arcade.draw_point(x, y, arcade.color.RED, 5)
+# Variable to check to see if starship finds resource cache.
+cache = 20
 
-    # Snow
-    arcade.draw_circle_filled(x, 60 + y, 60, arcade.color.WHITE)
-    arcade.draw_circle_filled(x, 140 + y, 50, arcade.color.WHITE)
-    arcade.draw_circle_filled(x, 200 + y, 40, arcade.color.WHITE)
+# Sets done variable as false
+done = False
 
-    # Eyes
-    arcade.draw_circle_filled(x - 15, 210 + y, 5, arcade.color.BLACK)
-    arcade.draw_circle_filled(x + 15, 210 + y, 5, arcade.color.BLACK)
+# while loop to loop game.
+while done == False:
+    # Options
+    print("A. Refuel Tank.")
+    print("B. Go cruising speed.")
+    print("C. Go warp speed.")
+    print("D. Cool off the warp drive.")
+    print("E. Status check. ")
+    print("Q. Quit")
 
+    # Choice input
+    Choice = input("What is your choice? ")
 
-def on_draw(delta_time):
-    """ Draw everything """
-    arcade.start_render()
+    # A choice input
+    if Choice == "a" or Choice == "A":
+        if can <= 0:
+            print("You are out of fuel in your canister")
+        if can >= 1:
+            print("You refuel your ship from your fuel canister")
+            can -= 1
+            fuel = 0
 
-    draw_grass()
-    draw_snow_person(on_draw.snow_person1_x, 140)
-    draw_snow_person(450, 180)
+    # B choice input
+    if Choice == "b" or Choice == "B":
+        print("You move ahead at cruising speed.")
+        # Rolls a random number between range
+        my_number1 = random.randrange(5, 12)
+        print("You traveled ", my_number1, " light-years.")
+        miles += my_number1
+        fuel += 1
+        overheat += 1
+        # Rolls a random number between range
+        my_number = random.randrange(7, 14)
+        republic = republic + my_number - my_number1
+        # Rolls a random number between range
+        my_number = random.randrange(1, 20)
+        # Checks if my_number matches cache value
+        if my_number == cache:
+            print("You found a resource cache!")
+            can = 3
+            overheat = 0
+            fuel = 0
 
-    # Add one to the x value, making the snow person move right
-    # Negative numbers move left. Larger numbers move faster.
-    on_draw.snow_person1_x += 1
+    # C choice input
+    if Choice == "c" or Choice == "C":
+        print("You move ahead at warp speed.")
+        # Rolls a random number between range
+        my_number1 = random.randrange(14, 20)
+        print("You traveled ", my_number1, " light-years.")
+        miles += my_number1
+        fuel += 1
+        # Rolls a random number between range
+        my_number = random.randrange(1, 3)
+        overheat = my_number + overheat - my_number1
+        # Rolls a random number between range
+        my_number = random.randrange(7, 14)
+        republic = my_number + republic - my_number1
+        # Rolls a random number between range
+        my_number = random.randrange(1, 20)
+        # Checks if my_number matches cache value
+        if my_number == cache:
+            print("You found a resource cache!")
+            can = 3
+            overheat = 0
+            fuel = 0
 
+    # D choice input
+    if Choice == "d" or Choice == "D":
+        print("You cool down your warp drive.")
+        # Rolls a random number between range
+        my_number = random.randrange(7, 14)
+        republic = republic + my_number
+        overheat = 0
 
-# Create a value that our on_draw.snow_person1_x will start at.
-on_draw.snow_person1_x = 150
+    # E choice input
+    if Choice == "e" or Choice == "E":
+        print("Light-years traveled : ", miles)
+        print("Fuel in Canister : ", can)
+        # Makes republic value into positive.
+        behind = republic * -1
+        print("The Republic is ", behind, " light-years behind you.")
 
+    # Q choice input
+    if Choice == "q" or Choice == "Q":
+        print("You've decided to quit the game.")
+        # Ends game
+        done = True
 
-def main():
-    arcade.open_window(SCREEN_WIDTH, SCREEN_HEIGHT, "Drawing with Functions")
-    arcade.set_background_color(arcade.color.DARK_BLUE)
+    # Warning Screen
+    if fuel == 4 and fuel != 6 and done != True:
+        print("You are low on gas.")
 
-    # Call on_draw every 60th of a second.
-    arcade.schedule(on_draw, 1/60)
-    arcade.run()
+    # Lose screen
+    if fuel == 6 and done != True:
+        print("You ran out of gas!")
+        # Ends game
+        done = True
 
+    # Warning Screen
+    if 5 <= overheat <= 7 and done != True:
+        print("Your warp drive is starting to overheat.")
 
-# Call the main function to get the program started.
-main()
+    # Lose screen
+    if overheat >= 8 and done != True:
+        print("Your warpdrive overheated and exploded!")
+        # Ends game
+        done = True
+
+    # Warning Screen
+    if -5 >= republic >= 0:
+        print("The Republic is getting close!")
+
+    # Lose screen
+    if republic >= 0 and done != True:
+        print("The Republic caught you!")
+        # Ends game
+        done = True
+
+    # Win screen
+    if miles >= 200 and done != True:
+        print("You were able to lose the Republic. You won!")
+        # Ends game
+        done = True
