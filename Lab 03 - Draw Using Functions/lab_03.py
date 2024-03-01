@@ -134,7 +134,7 @@ def sun(x, y):
     arcade.draw_circle_filled(x, y, 40, arcade.color.YELLOW)
 
 
-def on_draw(delta_time):
+def refresh(delta_time):
     # Starts render
 
     arcade.start_render()
@@ -173,15 +173,15 @@ def on_draw(delta_time):
 
     # Calls Sun function and sets Sun function at 520 x and 520 y
 
-    sun(on_draw.bright_x, 520)
+    sun(refresh.bright_x, 520)
 
     # Moves Sun to the left at speed of 1
 
-    on_draw.bright_x -= 1
+    refresh.bright_x -= 1
 
 
 # Creates a value that sun will start at.
-on_draw.bright_x = 520
+refresh.bright_x = 520
 
 
 # In-future wanting to learn how to make it come from right side and stop at 520 x to give the effect of cycle.
@@ -193,7 +193,7 @@ def main():
     # Sets background color
     arcade.set_background_color(arcade.color.BLUE_SAPPHIRE)
     # Gets program ready to draw
-    arcade.schedule(on_draw, 1 / 60)
+    arcade.schedule(refresh, 1 / 60)
     # Keeps running the windows until closed.
     arcade.run()
 
