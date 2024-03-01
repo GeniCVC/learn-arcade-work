@@ -59,7 +59,7 @@ def main():
     # Appends direction to room_list
     room_list.append(room)
 
-    #
+    # While Loop
     while not done:
         # Prints the current room information
         print(room_list[current_room].description)
@@ -101,7 +101,7 @@ def main():
             # Continues Program
             continue
 
-        #
+        # Makes current_room variable equal next_room variable.
         current_room = next_room
 
 
