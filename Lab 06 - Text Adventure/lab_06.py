@@ -68,18 +68,22 @@ def main():
 
         # North Direction
         if direction[0] == 'N' or direction[0] == 'n':
+            # Sets next_room variable to direction
             next_room = room_list[current_room].north
 
         # South Direction
         elif direction[0] == 'S' or direction[0] == 's':
+            # Sets next_room variable to direction
             next_room = room_list[current_room].south
 
         # East Direction
         elif direction[0] == 'E' or direction[0] == 'e':
+            # Sets next_room variable to direction
             next_room = room_list[current_room].east
 
         # West Direction
         elif direction[0] == 'W' or direction[0] == 'w':
+            # Sets next_room variable to direction
             next_room = room_list[current_room].west
 
         # Quit Option
