@@ -11,6 +11,7 @@ MOVEMENT_SPEED = 3
 
 def draw_sky():
     # Draws Sky
+    arcade.draw_rectangle_filled(300, 550, 600, 100, arcade.color.BLUE_SAPPHIRE)
     arcade.draw_rectangle_filled(300, 450, 600, 100, arcade.color.BONDI_BLUE)
     arcade.draw_rectangle_filled(300, 350, 600, 100, arcade.color.BLUE_GREEN)
     arcade.draw_rectangle_filled(300, 250, 600, 100, arcade.color.BALL_BLUE)
@@ -303,9 +304,5 @@ class MyGame(arcade.Window):
 def main():
     # End of Main Method #
     window = MyGame()
-    # Sets background color
-    arcade.set_background_color(arcade.color.BLUE_SAPPHIRE)
     arcade.run()
-
-
 main()
