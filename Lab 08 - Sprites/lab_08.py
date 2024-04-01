@@ -9,8 +9,8 @@ SPRITE_SCALING_PLAYER = 0.03
 SPRITE_SCALING_GEM = 0.2
 
 # -- Sprite Amount --
-GEM_COUNT = 5
-METEOR_COUNT = 5
+GEM_COUNT = 20
+METEOR_COUNT = 20
 
 # -- Window --
 SCREEN_WIDTH = 1000
@@ -148,7 +148,8 @@ class MyGame(arcade.Window):
 
 
         else:
-            arcade.draw_text("Game Over", 500, 300, arcade.color.RED, 20)
+            # Game Over screen when all gems are obtained.
+            arcade.draw_text("Game Over", 450, 300, arcade.color.RED, 20)
             output = f"Score: {self.score}"
             arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
             arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
@@ -156,6 +157,7 @@ class MyGame(arcade.Window):
     def on_mouse_motion(self, x, y, dx, dy):
         """ Handle Mouse Motion """
 
+        # Freezes Game when all gems are obtained.
         if len(self.gem_list) != 0:
             # Move the center of the player sprite to match the mouse x, y
             self.player_sprite.center_x = x
@@ -176,6 +178,7 @@ class MyGame(arcade.Window):
                                                                self.meteor_list)
 
         # Loop through each colliding sprite, remove it, and add to the score.
+        # Freezes Game when all gems are obtained.
         if len(self.gem_list) != 0:
             for gems in gems_hit_list:
                 gems.remove_from_sprite_lists()
