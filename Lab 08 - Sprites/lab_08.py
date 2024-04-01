@@ -9,8 +9,8 @@ SPRITE_SCALING_PLAYER = 0.03
 SPRITE_SCALING_GEM = 0.2
 
 # -- Sprite Amount --
-GEM_COUNT = 50
-METEOR_COUNT = 20
+GEM_COUNT = 5
+METEOR_COUNT = 5
 
 # -- Window --
 SCREEN_WIDTH = 1000
@@ -128,9 +128,6 @@ class MyGame(arcade.Window):
         # Source for 8bitSpace.jpg: https://www.deviantart.com/yuni-naoki/art/FREE-Purple-Space-Background-139763515
         self.background = arcade.load_texture("8bitSpace.jpg")
 
-        # Source for GameOver.png: https://www.deviantart.com/cheyennedagamer/art/GAME-OVER-954528724
-        self.over = arcade.load_texture("GameOver.png")
-
     def on_draw(self):
 
         """ Draw everything """
@@ -151,16 +148,18 @@ class MyGame(arcade.Window):
 
 
         else:
-            arcade.draw_lrwh_rectangle_textured(0, 0,
-                                                SCREEN_WIDTH, SCREEN_HEIGHT,
-                                                self.over)
+            arcade.draw_text("Game Over", 500, 300, arcade.color.RED, 20)
+            output = f"Score: {self.score}"
+            arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
+            arcade.draw_text(output, 10, 20, arcade.color.WHITE, 14)
 
     def on_mouse_motion(self, x, y, dx, dy):
         """ Handle Mouse Motion """
 
-        # Move the center of the player sprite to match the mouse x, y
-        self.player_sprite.center_x = x
-        self.player_sprite.center_y = y
+        if len(self.gem_list) != 0:
+            # Move the center of the player sprite to match the mouse x, y
+            self.player_sprite.center_x = x
+            self.player_sprite.center_y = y
 
     def update(self, delta_time):
         """ Movement and game logic """
@@ -177,15 +176,16 @@ class MyGame(arcade.Window):
                                                                self.meteor_list)
 
         # Loop through each colliding sprite, remove it, and add to the score.
-        for gems in gems_hit_list:
-            gems.remove_from_sprite_lists()
-            self.score += 1
-            arcade.play_sound(self.good_sound)
+        if len(self.gem_list) != 0:
+            for gems in gems_hit_list:
+                gems.remove_from_sprite_lists()
+                self.score += 1
+                arcade.play_sound(self.good_sound)
 
-        for meteor in meteor_hit_list:
-            meteor.remove_from_sprite_lists()
-            self.score -= 1
-            arcade.play_sound(self.hit_sound)
+            for meteor in meteor_hit_list:
+                meteor.remove_from_sprite_lists()
+                self.score -= 1
+                arcade.play_sound(self.hit_sound)
 
 
 def main():
