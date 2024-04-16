@@ -7,6 +7,7 @@ def split_line(line):
     return re.findall('[A-Za-z]+(?:\'[A-Za-z]+)?', line)
 
 
+# Binary Search Function
 def binary_search(word, dictionary_list):
     low = 0
     high = len(dictionary_list) - 1
@@ -21,7 +22,7 @@ def binary_search(word, dictionary_list):
             high = mid - 1
     return False
 
-
+# Main Function
 def main():
     """ Read in lines from a file """
     # Open the file for reading, and store a pointer to it in the new
@@ -39,6 +40,8 @@ def main():
     # Closes file
     my_file.close()
 
+
+# Linear Search
     print("--- Linear Search ---")
 
     # Open file, and automatically close when we exit this block.
@@ -55,6 +58,7 @@ def main():
                 else:
                     print(f"Word {capitalized_word} is not in the dictionary. Found on line {line_number}")
 
+# Binary Search
     print("--- Binary Search ---")
 
     # Open file again to reset the pointer
