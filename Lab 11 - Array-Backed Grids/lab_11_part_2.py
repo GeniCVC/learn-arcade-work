@@ -90,24 +90,6 @@ class MyGame(arcade.Window):
             else:
                 self.grid[row][column] = 0
 
-            if self.grid[row + 1][column] == 0:
-                self.grid[row + 1][column] = 1
-            else:
-                self.grid[row + 1][column] = 0
-
-            if self.grid[row - 1][column] == 0:
-                self.grid[row - 1][column] = 1
-            else:
-                self.grid[row - 1][column] = 0
-            if self.grid[row][column + 1] == 0:
-                self.grid[row][column + 1] = 1
-            else:
-                self.grid[row][column + 1] = 0
-            if self.grid[row][column - 1] == 0:
-                self.grid[row][column - 1] = 1
-            else:
-                self.grid[row][column - 1] = 0
-
             selected_count = 0
             for row in range(ROW_COUNT):
                 for column in range(COLUMN_COUNT):
