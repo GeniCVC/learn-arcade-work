@@ -110,13 +110,16 @@ class Player:
             choice = input("Enter the number of the item you want to use, or 'cancel' to go back: ")
             if choice.lower() == 'cancel':
                 return
+            # Try Loop
             try:
                 choice_index = int(choice) - 1
                 if 0 <= choice_index < len(self.inventory):
                     item = self.inventory.pop(choice_index)
                     print(f"You used {item}.")
+                # If number user types in invalid
                 else:
                     print("Invalid item number.")
+            # If user types letter instead of number.
             except ValueError:
                 print("Invalid input.")
         else:
@@ -147,13 +150,12 @@ class Player:
 def main():
     # Creates list for rooms
     room_list = []
-    # Creates and sets next_room variable to 0
-    next_room = 0
     # Creates and sets current_room variable to 0
     current_room = 0
     # Sets done variable to False
     done = False
 
+    # Intro
     print("You are a treasure hunter who has heard talk of the ancient treasure of King Solomon. You have traveled to "
           "the entrance of his tomb. Through the use of proverbs you may be able to find it, but be on the lookout "
           "for traps...")
